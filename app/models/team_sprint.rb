@@ -1,4 +1,4 @@
-class Backlog < ActiveRecord::Base
+class TeamSprint < ActiveRecord::Base
   include Redmine::SafeAttributes
 
   safe_attributes 'name'

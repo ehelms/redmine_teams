@@ -1,4 +1,5 @@
 <%= fields_for :issue, issue do |f| -%>
   <p><%= label_tag 'Team' %><%= f.select :team, options_from_collection_for_select(Team.all, 'id', 'name') %></p>
+  <p><%= label_tag 'Team Sprint' %><%= f.select :team_sprint, options_from_collection_for_select(issue.team.team_sprints, 'id', 'name') %></p>
 <% end %>
 <% if User.current.allowed_to?(:edit_teams, issue.team) %><% end %>

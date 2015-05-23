@@ -3,7 +3,7 @@ class Team < ActiveRecord::Base
 
   safe_attributes 'name'
 
-  has_one :backlog
+  has_many :team_sprints
   has_and_belongs_to_many :issues
 
   validates_presence_of :name
@@ -12,7 +12,12 @@ class Team < ActiveRecord::Base
   after_save :add_team_backlog
 
   def add_team_backlog
-    Backlog.create(:name => 'Team Backlog', :team => self)
+    return if backlog
+    TeamSprint.create(:name => "#{name} Backlog", :team => self, :backlog => true)
+  end
+
+  def backlog
+    team_sprints.where(:backlog => true).first
   end
 
 end

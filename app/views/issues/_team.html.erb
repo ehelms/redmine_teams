@@ -2,4 +2,5 @@
 <div id="issue_team">
   <p><strong>Team</strong></p>
   <p><%= link_to @issue.team.name, team_path(@issue.team) %></p>
+  <p><%= link_to @issue.team_sprint.name, team_team_sprint_path(@issue.team, @issue.team_sprint) %></p>
 </div>

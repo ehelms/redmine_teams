@@ -2,7 +2,7 @@
 # See: http://guides.rubyonrails.org/routing.html
 
 resources :teams, :controller => :teams do
-  resources :backlogs, :controller => :backlogs do
+  resources :team_sprints, :controller => :team_sprints do
     member do
       get :issues
     end
