@@ -1,0 +1,7 @@
+<%= title 'New Team' %>
+
+<%= labelled_form_for @team, :url => url_for(:controller => 'teams', :action => 'create') do |f| %>
+  <%= render :partial => 'teams/form', :locals => { :f => f } %>
+  <%= submit_tag l(:button_create) %>
+  <%= submit_tag l(:button_create_and_continue), :name => 'continue' %>
+<% end %>

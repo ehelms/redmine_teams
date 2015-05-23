@@ -1,0 +1,13 @@
+<h2>Teams</h2>
+
+<div class="contextual">
+  <%= link_to 'New Team', new_team_path, :class => 'icon icon-add' %>
+</div>
+
+<div class="splitcontentleft">
+  <%- @teams.each do |team| %>
+  <div class="issues box">
+    <h3><%= link_to "#{team.name} Team", team_path(team) %></h3>
+  </div>
+  <% end %>
+</div>

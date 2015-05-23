@@ -1,0 +1,8 @@
+<div class="contextual">
+  <%= link_to 'Add Issues', '', :class => 'icon icon-add' %>
+</div>
+
+<h2><%= @query.new_record? ? l(:label_issue_plural) : h(@query.name) %></h2>
+<% html_title(@query.new_record? ? l(:label_issue_plural) : @query.name) %>
+
+<%= render :partial => 'issues/list', :locals => {:issues => @issues, :query => @query} %>
