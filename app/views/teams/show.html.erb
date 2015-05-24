@@ -1,4 +1,8 @@
-<h2><%= @team.name %> Team</h2>
+<h2><%= @team.name %></h2>
+
+<div class="contextual">
+  <%= link_to 'New Sprint', new_team_team_sprint_path(@team), :class => 'icon icon-add' %>
+</div>
 
 <div class="splitcontentleft">
 
