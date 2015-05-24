@@ -8,6 +8,15 @@
   <%- @teams.each do |team| %>
   <div class="issues box">
     <h3><%= link_to "#{team.name} Team", team_path(team) %></h3>
+    <ul>
+    <% for sprint in team.team_sprints %>
+      <% if sprint.backlog %>
+        <li><%= link_to sprint.name, team_team_sprint_path(team, sprint) %>: <%= sprint.issues.count %></li>
+      <% else %>
+        <li><%= link_to sprint.name, team_team_sprint_path(team, sprint) %>: <%= sprint.issues.open(false).length %> / <%= sprint.issues.count %></li>
+      <% end %>
+    <% end %>
+    </ul>
   </div>
   <% end %>
 </div>
