@@ -4,8 +4,9 @@ module RedmineTeams
       extend ActiveSupport::Concern
 
       included do
-        has_one :issues_teams
+        has_one :issues_teams, :inverse_of => :issue
         has_one :team, :through => :issues_teams
+        accepts_nested_attributes_for :team
 
         has_one :issues_team_sprints
         has_one :team_sprint, :through => :issues_team_sprints
@@ -18,6 +19,10 @@ module RedmineTeams
 
         self.team_sprint = self.team.backlog
         self.save!
+      end
+
+      def team_id
+        issues_teams.team_id
       end
 
     end

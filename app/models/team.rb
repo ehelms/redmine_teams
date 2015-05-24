@@ -13,7 +13,7 @@ class Team < ActiveRecord::Base
 
   def add_team_backlog
     return if backlog
-    TeamSprint.create(:name => "#{name} Backlog", :team => self, :backlog => true)
+    TeamSprint.create(:name => "Backlog", :team => self, :backlog => true)
   end
 
   def backlog

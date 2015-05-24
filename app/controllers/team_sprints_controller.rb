@@ -2,6 +2,11 @@ class TeamSprintsController < ApplicationController
   unloadable
 
   def index
+    @team_sprints = Team.find(params[:team_id]).team_sprints
+    respond_to do |format|
+      format.html { render(:template => 'team_sprints/index', :layout => !request.xhr?) }
+      format.api  { }
+    end
   end
 
   def new

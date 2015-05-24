@@ -1,5 +1,32 @@
+<% content_for :header_tags do %>
+  <%= javascript_include_tag 'team_sprint_update', :plugin => 'redmine_teams' %>
+<% end %>
+
 <%= fields_for :issue, issue do |f| -%>
-  <p><%= label_tag 'Team' %><%= f.select :team, options_from_collection_for_select(Team.all, 'id', 'name') %></p>
-  <p><%= label_tag 'Team Sprint' %><%= f.select :team_sprint, options_from_collection_for_select(issue.team.team_sprints, 'id', 'name') %></p>
+  <p>
+    <%= label_tag 'Team' %>
+    <select id="issue_team" name="issue[team]">
+      <% Team.all.each do |team| %>
+        <% if team == issue.team %>
+          <option value="<%= team.id %>" selected="selected"><%= team.name %></option>
+        <% else %>
+          <option value="<%= team.id %>"><%= team.name %></option>
+        <% end %>
+      <% end %>
+    </select>
+  </p>
+
+  <p>
+    <%= label_tag 'Team Sprint' %>
+    <select id="issue_team_sprint" name="issue[team_sprint]">
+      <% issue.team.team_sprints.each do |sprint| %>
+        <% if sprint == issue.team_sprint %>
+          <option value="<%= sprint.id %>" selected="selected"><%= sprint.name %></option>
+        <% else %>
+          <option value="<%= sprint.id %>"><%= sprint.name %></option>
+        <% end %>
+      <% end %>
+    </select>
+  </p>
 <% end %>
 <% if User.current.allowed_to?(:edit_teams, issue.team) %><% end %>

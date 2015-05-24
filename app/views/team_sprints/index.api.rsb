@@ -1,0 +1,8 @@
+api.array :team_sprints, api_meta(:total_count => @team_sprint_count, :offset => @offset, :limit => @limit) do
+  @team_sprints.each do |sprint|
+    api.sprint do
+      api.id sprint.id
+      api.name sprint.name
+    end
+  end
+end
