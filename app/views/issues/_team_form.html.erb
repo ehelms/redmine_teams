@@ -19,7 +19,7 @@
   <p>
     <%= label_tag 'Team Sprint' %>
     <select id="issue_team_sprint" name="issue[team_sprint]">
-      <% issue.team.team_sprints.each do |sprint| %>
+      <% (issue.team.nil? ? Team.first.team_sprints : issue.team.team_sprints).each do |sprint| %>
         <% if sprint == issue.team_sprint %>
           <option value="<%= sprint.id %>" selected="selected"><%= sprint.name %></option>
         <% else %>

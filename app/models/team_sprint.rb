@@ -1,4 +1,6 @@
 class TeamSprint < ActiveRecord::Base
+  unloadable
+
   include Redmine::SafeAttributes
 
   safe_attributes 'name'

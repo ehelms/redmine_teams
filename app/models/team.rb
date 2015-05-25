@@ -1,9 +1,11 @@
 class Team < ActiveRecord::Base
+  unloadable
+
   include Redmine::SafeAttributes
 
   safe_attributes 'name'
 
-  has_many :team_sprints
+  has_many :team_sprints, :inverse_of => :team
   has_and_belongs_to_many :issues
 
   validates_presence_of :name
@@ -18,6 +20,10 @@ class Team < ActiveRecord::Base
 
   def backlog
     team_sprints.where(:backlog => true).first
+  end
+
+  def to_s
+    name
   end
 
 end

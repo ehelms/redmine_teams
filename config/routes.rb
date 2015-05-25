@@ -3,8 +3,7 @@
 
 resources :teams, :controller => :teams do
   resources :team_sprints, :controller => :team_sprints do
-    member do
-      get :issues
+    resources :issues, :only => [:index] do
     end
   end
 end

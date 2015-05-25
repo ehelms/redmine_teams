@@ -1,5 +1,32 @@
 <h2><%= @team_sprint.name %></h2>
 
-<div class="splitcontentleft">
-
+<div>
+  <table class="list issues">
+    <thead>
+      <tr>
+        <th class="checkbox hide-when-print">
+        </th>
+        <th>#</th>
+        <th>Tracker</th>
+        <th>Status</th>
+        <th>Priority</th>
+        <th>Subject</th>
+        <th>Assigned To</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @issues.each do |issue| %>
+        <% klass = issue.closed? ? 'closed':'open' %>
+        <tr class="hascontextmenu <%= klass %> <%= cycle('odd', 'even') %> <%= issue.css_classes %>">
+          <td class="checkbox"><%= check_box_tag 'ids[]', issue.id, false, :id => nil %></td>
+          <td><%= link_to issue.id, {:controller => 'issues', :action => 'show', :id => issue.id} %></td>
+          <td><%= h tracker_name_or_empty(issue) %></td>
+          <td><%= issue.status %></td>
+          <td><%= issue.priority %></td>
+          <td><%= issue.subject %></td>
+          <td><%= issue.assigned_to %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>

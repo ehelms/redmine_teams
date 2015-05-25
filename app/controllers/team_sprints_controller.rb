@@ -16,11 +16,7 @@ class TeamSprintsController < ApplicationController
 
   def show
     @team_sprint = TeamSprint.find(params[:id])
-
-    respond_to do |format|
-      format.html
-      format.api
-    end
+    @issues = @team_sprint.issues
   end
 
   def create
